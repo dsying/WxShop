@@ -1,7 +1,6 @@
 package com.kodemamba.wxshop;
 
 import com.kodemamba.wxshop.service.AuthService;
-import com.kodemamba.wxshop.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
