@@ -26,19 +26,31 @@ public class AuthController {
         this.authService = authService;
     }
 
+    /**
+     * 发送验证码
+     * @param codeInfo
+     */
     @PostMapping("/code")
     public void code(@RequestBody CodeInfo codeInfo) {
+        authService.sendVerificationCode(codeInfo.getTel());
+    }
+
+    /**
+     * 登录
+     * @param codeInfo
+     */
+    @PostMapping("/login")
+    public void login(@RequestBody CodeInfo codeInfo) {
         String tel = codeInfo.getTel();
         String code = codeInfo.getCode();
-        authService.sendVerificationCode(tel);
-        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(tel, code);
+        token.setRememberMe(true);
         try {
-            subject.login(new UsernamePasswordToken(tel, code));
+            SecurityUtils.getSubject().login(token);
             System.out.println("登录成功!");
         } catch (AuthenticationException e) {
             e.printStackTrace();
             System.out.println("登录失败!");
         }
-
     }
 }
