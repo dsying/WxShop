@@ -123,6 +123,24 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.0.4</version>
+				<configuration>
+					<excludeFilterFile>spotbugs.xml</excludeFilterFile>
+				</configuration>
+				<executions>
+					<execution>
+                        <id>spotbugs</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
